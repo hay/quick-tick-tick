@@ -17,9 +17,33 @@
   "commands": [
     {
       "name": "add-to-inbox",
-      "title": "Add to inbox",
-      "description": "",
-      "mode": "no-view"
+      "title": "Add to Inbox",
+      "description": "Quickly add a task to your TickTick inbox",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "title",
+          "placeholder": "Task title",
+          "type": "text",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "clientId",
+      "title": "Client ID",
+      "description": "Your TickTick OAuth app Client ID. Create one at https://developer.ticktick.com/manage",
+      "type": "textfield",
+      "required": true
+    },
+    {
+      "name": "clientSecret",
+      "title": "Client Secret",
+      "description": "Your TickTick OAuth app Client Secret",
+      "type": "password",
+      "required": true
     }
   ],
   "dependencies": {
