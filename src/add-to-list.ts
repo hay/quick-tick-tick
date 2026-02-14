@@ -1,7 +1,8 @@
-import { LaunchProps, LocalStorage, showHUD, showToast, Toast } from "@raycast/api";
+import { LaunchProps, launchCommand, LaunchType, LocalStorage, showHUD, showToast, Toast } from "@raycast/api";
 import { withAccessToken } from "@raycast/utils";
 import { authorize, client } from "./oauth";
 import { createTask } from "./api";
+import { isSetupComplete } from "./setup";
 
 async function addToList(props: LaunchProps<{ arguments: Arguments.AddToList }>) {
     const title = props.arguments.title.trim();
@@ -16,8 +17,8 @@ async function addToList(props: LaunchProps<{ arguments: Arguments.AddToList }>)
     if (!defaultProjectId) {
         await showToast({
             style: Toast.Style.Failure,
-            title: "No default list configured",
-            message: 'Run "Set Default List" first',
+            title: "No favorite list configured",
+            message: 'Run "Set Favorite List" first',
         });
         return;
     }
@@ -31,4 +32,14 @@ async function addToList(props: LaunchProps<{ arguments: Arguments.AddToList }>)
     }
 }
 
-export default withAccessToken({ authorize, client })(addToList);
+const authenticatedCommand = withAccessToken({ authorize, client })(addToList);
+
+export default async function Command(props: LaunchProps<{ arguments: Arguments.AddToList }>) {
+    if (!isSetupComplete()) {
+        await showToast({ style: Toast.Style.Failure, title: "Setup required", message: "Opening setup guide…" });
+        await launchCommand({ name: "setup-guide", type: LaunchType.UserInitiated });
+        return;
+    }
+
+    return authenticatedCommand(props);
+}

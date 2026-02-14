@@ -8,7 +8,7 @@ const client = new OAuth.PKCEClient({
     redirectMethod: OAuth.RedirectMethod.Web,
     providerName: "TickTick",
     providerIcon: "extension-icon.png",
-    description: "To use this extension you need to create a TickTick app, you can do that at https://developer.ticktick.com/manage",
+    description: "To use this extension you need to click the button below to allow it to create tasks on TickTick",
 });
 
 async function fetchTokens(authRequest: OAuth.AuthorizationRequest, authCode: string): Promise<OAuth.TokenResponse> {

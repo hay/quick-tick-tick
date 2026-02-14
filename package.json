@@ -50,9 +50,15 @@
       "mode": "view"
     },
     {
-      "name": "set-default-list",
-      "title": "Set Default List",
+      "name": "set-favorite-list",
+      "title": "Set Favorite List",
       "description": "Choose which TickTick list the 'Add to Favorite List' command uses",
+      "mode": "view"
+    },
+    {
+      "name": "setup-guide",
+      "title": "Setup Guide",
+      "description": "Shows setup instructions for connecting to the TickTick API",
       "mode": "view"
     }
   ],
@@ -62,14 +68,14 @@
       "title": "Client ID",
       "description": "Your TickTick OAuth app Client ID. Create one at https://developer.ticktick.com/manage",
       "type": "textfield",
-      "required": true
+      "required": false
     },
     {
       "name": "clientSecret",
       "title": "Client Secret",
       "description": "Your TickTick OAuth app Client Secret",
       "type": "password",
-      "required": true
+      "required": false
     }
   ],
   "dependencies": {

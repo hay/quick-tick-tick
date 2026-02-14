@@ -2,6 +2,8 @@ import { Action, ActionPanel, Form, showHUD, showToast, Toast, popToRoot } from 
 import { withAccessToken } from "@raycast/utils";
 import { authorize, client } from "./oauth";
 import { createTask, getProjects } from "./api";
+import { isSetupComplete } from "./setup";
+import { SetupGuideView } from "./setup-guide";
 import { useEffect, useState } from "react";
 
 interface FormValues {
@@ -65,4 +67,12 @@ function AddToAnyList() {
     );
 }
 
-export default withAccessToken({ authorize, client })(AddToAnyList);
+const AuthenticatedCommand = withAccessToken({ authorize, client })(AddToAnyList);
+
+export default function Command() {
+    if (!isSetupComplete()) {
+        return <SetupGuideView />;
+    }
+
+    return <AuthenticatedCommand />;
+}
