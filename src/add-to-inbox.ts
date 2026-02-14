@@ -1,8 +1,7 @@
 import { LaunchProps, showHUD, showToast, Toast } from "@raycast/api";
-import { withAccessToken, getAccessToken } from "@raycast/utils";
+import { withAccessToken } from "@raycast/utils";
 import { authorize, client } from "./oauth";
-
-const TICKTICK_API = "https://api.ticktick.com/open/v1";
+import { createTask } from "./api";
 
 async function addToInbox(props: LaunchProps<{ arguments: Arguments.AddToInbox }>) {
     const title = props.arguments.title.trim();
@@ -13,22 +12,7 @@ async function addToInbox(props: LaunchProps<{ arguments: Arguments.AddToInbox }
     }
 
     try {
-        const { token } = getAccessToken();
-
-        const response = await fetch(`${TICKTICK_API}/task`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title }),
-        });
-
-        if (!response.ok) {
-            const text = await response.text();
-            throw new Error(`${response.status}: ${text}`);
-        }
-
+        await createTask(title);
         await showHUD(`✅ Added "${title}" to inbox`);
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unknown error";

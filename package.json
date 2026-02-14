@@ -1,8 +1,8 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "quick-tick-tick",
-  "title": "Quick Tick Tick",
-  "description": "Quickly add Tick Tick tasks without needing the app",
+  "title": "Quick TickTick",
+  "description": "Quickly add TickTick tasks using the API (without the app)",
   "icon": "extension-icon.png",
   "author": "hayify",
   "owner": "haykranen",
@@ -18,7 +18,7 @@
     {
       "name": "add-to-inbox",
       "title": "Add to Inbox",
-      "description": "Quickly add a task to your TickTick inbox",
+      "description": "Add a task to inbox",
       "mode": "no-view",
       "arguments": [
         {
@@ -28,6 +28,32 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "add-to-list",
+      "title": "Add to Favorite List",
+      "description": "Add a task to your favorite list",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "title",
+          "placeholder": "Task title",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "add-to-any-list",
+      "title": "Add to Any List",
+      "description": "Add a task to any list",
+      "mode": "view"
+    },
+    {
+      "name": "set-default-list",
+      "title": "Set Default List",
+      "description": "Choose which TickTick list the 'Add to Favorite List' command uses",
+      "mode": "view"
     }
   ],
   "preferences": [
