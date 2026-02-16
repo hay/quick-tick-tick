@@ -68,14 +68,14 @@
       "title": "Client ID",
       "description": "Your TickTick OAuth app Client ID. Create one at https://developer.ticktick.com/manage",
       "type": "textfield",
-      "required": false
+      "required": true
     },
     {
       "name": "clientSecret",
       "title": "Client Secret",
       "description": "Your TickTick OAuth app Client Secret",
       "type": "password",
-      "required": false
+      "required": true
     }
   ],
   "dependencies": {
